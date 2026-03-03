@@ -32,6 +32,10 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'apps.accounts',
+    'apps.companies',
+    'apps.vacancies',
+    'apps.resumes',
 
 ]
 
@@ -123,31 +127,32 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '{levelname} {message}',
+        'minimal': {
+            'format': '{levelname}: {message}',
             'style': '{',
         },
     },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'simple',
+            'formatter': 'minimal',
         },
         'file': {
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'logs/jobboard.log'),
-            'formatter': 'verbose',
+            'formatter': 'minimal',
         },
     },
     'loggers': {
         'django': {
             'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-            'propagate': True,
+            'level': 'INFO',           # або WARNING, якщо взагалі хочеш менше шуму
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['console', 'file'],
+            'level': 'WARNING',        # помилки 404/500 та інше — не DEBUG
+            'propagate': False,
         },
     },
 }
