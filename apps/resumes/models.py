@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from apps.companies.models import Company
+from apps.professions.models import Profession
 
 
 class Resume(models.Model):
@@ -9,6 +10,8 @@ class Resume(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='resumes')
+    profession = models.ForeignKey(
+        Profession, on_delete=models.CASCADE, related_name='resumes')
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50, blank=True, null=True)

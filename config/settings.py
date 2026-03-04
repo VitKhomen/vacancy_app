@@ -36,6 +36,7 @@ LOCAL_APPS = [
     'apps.companies',
     'apps.vacancies',
     'apps.resumes',
+    'apps.professions',
 
 ]
 

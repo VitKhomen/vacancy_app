@@ -2,11 +2,14 @@ from django.db import models
 from django.conf import settings
 
 from apps.companies.models import Company
+from apps.professions.models import Profession
 
 
 class Vacancy(models.Model):
     company = models.ForeignKey(
         Company, on_delete=models.CASCADE, related_name='vacancies')
+    profession = models.ForeignKey(
+        Profession, on_delete=models.CASCADE, related_name='vacancies')
     title = models.CharField(max_length=255)
     description = models.TextField()
     salary = models.DecimalField(
