@@ -14,7 +14,25 @@ class Vacancy(models.Model):
     description = models.TextField()
     salary = models.DecimalField(
         max_digits=10, decimal_places=2, blank=True, null=True)
+    salary_from = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True)
+    salary_to = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True)
+    salary_type = models.CharField(
+        max_length=50,
+        choices=[
+            ('weekly', 'раз в неделю'),
+            ('monthly', 'раз в месяц'),
+            ('twice_monthly', '2 раза в месяц'),
+            ('daily', 'ежедневно'),
+            ('hourly', 'по часам'),
+            ('negotiated', 'договорная')
+        ],
+        default="monthly"
+    )
     experience = models.CharField(max_length=255, blank=True, null=True)
+    experience_from = models.PositiveIntegerField(blank=True, null=True)
+    experience_to = models.PositiveIntegerField(blank=True, null=True)
     employment_type = models.CharField(
         max_length=50,
         choices=[
@@ -39,6 +57,14 @@ class Vacancy(models.Model):
     )
     working_hours = models.CharField(max_length=100, blank=True, null=True)
     responsibilities = models.TextField(blank=True, null=True)
+    experience_required = models.CharField(
+        max_length=50,
+        choices=[
+            ('with_experience', 'с опытом'),
+            ('without_experience', 'без опыта')
+        ],
+        default="with_experience"
+    )
     conditions = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

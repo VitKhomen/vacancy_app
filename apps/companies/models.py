@@ -22,3 +22,21 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+
+    def average_rating(self):
+        feedback = self.feedbacks.all()
+        if feedback.exists():
+            return round(sum(f.rating for f in feedback) / feedback.count(), 1)
+        return 0
+
+
+class FeedbackCompany(models.Model):
+    company = models.ForeignKey(
+        Company, on_delete=models.CASCADE, related_name='feedbacks')
+    comment = models.TextField()
+    rating = models.PositiveIntegerField(choices=[(i, i) for i in range(1, 6)])
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Отзыв о {self.company.name} — {self.rating}/5"
