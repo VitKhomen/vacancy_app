@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Resume
+from .models import Resume, ResumeView
 
 
 @admin.register(Resume)
@@ -19,5 +19,19 @@ class ResumeAdmin(admin.ModelAdmin):
         }),
         ("Метаданные", {
             "fields": ("created_at", "updated_at"),
+        }),
+    )
+
+
+@admin.register(ResumeView)
+class ResumeViewAdmin(admin.ModelAdmin):
+    list_display = ("company", "resume", "date")
+    list_filter = ("date", "company__name")
+    search_fields = ("company__name", "resume__last_name",
+                     "resume__first_name")
+
+    fieldsets = (
+        ("Просмотр резюме", {
+            "fields": ("company", "resume", "date")
         }),
     )

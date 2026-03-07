@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Company, FeedbackCompany
+from .models import Company, FeedbackCompany, FavoriteVacancy
 
 
 @admin.register(Company)
@@ -20,3 +20,10 @@ class FeedbackCompanyAdmin(admin.ModelAdmin):
     list_display = ('id', 'company', 'comment', 'rating', 'created_at')
     list_filter = ("created_at",)
     search_fields = ("company__name", "comment")
+
+
+@admin.register(FavoriteVacancy)
+class FavoriteVacancyAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'vacancy', 'created_at')
+    list_filter = ("created_at",)
+    search_fields = ("user__username", "vacancy__title")
