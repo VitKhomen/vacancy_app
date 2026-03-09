@@ -39,6 +39,7 @@ LOCAL_APPS = [
     'apps.professions',
     'apps.resumes',
     'apps.vacancies',
+    'apps.homepage_user',
 
 ]
 
@@ -108,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # статік
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / "staticfiles"]
 # медіа
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
