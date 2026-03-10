@@ -1693,3 +1693,204 @@ INFO: Watching for file changes with StatReloader
 INFO: Watching for file changes with StatReloader
 INFO: Z:\my_less\python\django\job_vacancy\config\settings.py changed, reloading.
 INFO: Watching for file changes with StatReloader
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 8355
+WARNING: "GET /static/homepage_user/css/homepage.css HTTP/1.1" 404 2017
+WARNING: Not Found: /favicon.ico
+WARNING: "GET /favicon.ico HTTP/1.1" 404 2797
+INFO: "GET /admin/ HTTP/1.1" 302 0
+INFO: "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4080
+INFO: "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO: "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO: "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO: "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO: "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4248
+INFO: "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4248
+INFO: "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4248
+INFO: "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4258
+INFO: "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4248
+INFO: "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4248
+INFO: Watching for file changes with StatReloader
+INFO: "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO: "GET /admin/ HTTP/1.1" 200 15982
+INFO: "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO: "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO: "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO: Z:\my_less\python\django\job_vacancy\apps\core\admin.py changed, reloading.
+INFO: Watching for file changes with StatReloader
+INFO: "GET /admin/ HTTP/1.1" 200 17075
+INFO: "GET /admin/core/sitesettings/ HTTP/1.1" 200 16977
+INFO: "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO: "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+INFO: "GET /admin/core/sitesettings/add/ HTTP/1.1" 200 17788
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/css/forms.css HTTP/1.1" 200 8817
+INFO: "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO: "GET /static/admin/css/widgets.css HTTP/1.1" 200 11811
+INFO: "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO: "POST /admin/core/sitesettings/add/ HTTP/1.1" 302 0
+INFO: "GET /admin/core/sitesettings/ HTTP/1.1" 200 19134
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 200 31594
+INFO: "GET / HTTP/1.1" 200 8355
+WARNING: "GET /static/homepage_user/css/homepage.css HTTP/1.1" 404 2017
+INFO: "GET / HTTP/1.1" 200 8346
+WARNING: "GET /static/homepage_user/css/homepage.css HTTP/1.1" 404 2017
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 200 53332
+INFO: "GET / HTTP/1.1" 200 8305
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 304 0
+WARNING: "GET /static/homepage_user/css/homepage.css HTTP/1.1" 404 2017
+INFO: "GET / HTTP/1.1" 200 8268
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 304 0
+WARNING: "GET /static/homepage_user/css/homepage.css HTTP/1.1" 404 2017
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 304 0
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 8815
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 304 0
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 304 0
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 9160
+INFO: - Broken pipe from ('127.0.0.1', 63345)
+INFO: "GET /admin/ HTTP/1.1" 200 17502
+INFO: "GET /admin/accounts/profile/ HTTP/1.1" 200 20459
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+INFO: "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO: "GET /admin/accounts/profile/add/ HTTP/1.1" 200 22061
+INFO: "GET /static/admin/js/calendar.js HTTP/1.1" 200 9159
+INFO: "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19698
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1112
+INFO: "GET /admin/auth/user/add/?_to_field=id&_popup=1 HTTP/1.1" 200 8122
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/css/unusable_password_field.css HTTP/1.1" 200 663
+INFO: "POST /admin/auth/user/add/?_to_field=id&_popup=1 HTTP/1.1" 200 8445
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "POST /admin/auth/user/add/?_to_field=id&_popup=1 HTTP/1.1" 200 8435
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "POST /admin/auth/user/add/?_to_field=id&_popup=1 HTTP/1.1" 200 8370
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "POST /admin/auth/user/add/?_to_field=id&_popup=1 HTTP/1.1" 200 325
+INFO: "GET /static/admin/js/popup_response.js HTTP/1.1" 200 532
+INFO: "GET /static/admin/img/calendar-icons.svg HTTP/1.1" 200 1320
+INFO: "POST /admin/accounts/profile/add/ HTTP/1.1" 200 22363
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /admin/accounts/profile/ HTTP/1.1" 200 20965
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /admin/accounts/profile/2/change/ HTTP/1.1" 200 22370
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: - Broken pipe from ('127.0.0.1', 63718)
+INFO: "POST /admin/accounts/profile/2/change/ HTTP/1.1" 302 0
+INFO: "GET /admin/accounts/profile/ HTTP/1.1" 200 21188
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /admin/companies/company/ HTTP/1.1" 200 18013
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: - Broken pipe from ('127.0.0.1', 63717)
+INFO: "GET /admin/companies/company/add/ HTTP/1.1" 200 20667
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "POST /admin/companies/company/add/ HTTP/1.1" 302 0
+INFO: "GET /admin/companies/company/ HTTP/1.1" 200 20513
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /admin/professions/categoryprofession/ HTTP/1.1" 200 17519
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /admin/professions/categoryprofession/add/ HTTP/1.1" 200 21090
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/js/inlines.js HTTP/1.1" 200 15628
+INFO: "GET /static/admin/img/inline-delete.svg HTTP/1.1" 200 651
+INFO: "POST /admin/professions/categoryprofession/add/ HTTP/1.1" 302 0
+INFO: "GET /admin/professions/categoryprofession/ HTTP/1.1" 200 19365
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /admin/professions/profession/ HTTP/1.1" 200 18885
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /admin/vacancies/vacancy/ HTTP/1.1" 200 19272
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /admin/vacancies/vacancy/add/ HTTP/1.1" 200 32210
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "POST /admin/vacancies/vacancy/add/ HTTP/1.1" 302 0
+INFO: "GET /admin/vacancies/vacancy/ HTTP/1.1" 200 21811
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /admin/vacancies/vacancy/add/ HTTP/1.1" 200 32210
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "POST /admin/vacancies/vacancy/add/ HTTP/1.1" 302 0
+INFO: "GET /admin/vacancies/vacancy/ HTTP/1.1" 200 22352
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 11257
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 304 0
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 304 0
+INFO: "GET /media/company_logos/2/photo_2026-02-20_15-40-00.jpg HTTP/1.1" 200 120304
+INFO: - Broken pipe from ('127.0.0.1', 64035)
+INFO: - Broken pipe from ('127.0.0.1', 64032)
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 11257
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 200 31594
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 9181
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 200 53332
+INFO: "GET /media/company_logos/2/photo_2026-02-20_15-40-00.jpg HTTP/1.1" 200 120304
+WARNING: Not Found: /favicon.ico
+WARNING: "GET /favicon.ico HTTP/1.1" 404 2797
+INFO: "GET /admin HTTP/1.1" 301 0
+INFO: "GET /admin/ HTTP/1.1" 200 19666
+INFO: "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+INFO: "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+INFO: "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO: "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO: "GET /static/admin/css/responsive.css HTTP/1.1" 200 16273
+INFO: "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO: "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO: "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+INFO: "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+INFO: "GET /admin/vacancies/vacancy/add/ HTTP/1.1" 200 32210
+INFO: "GET /static/admin/css/forms.css HTTP/1.1" 200 8817
+INFO: "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO: "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO: "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO: "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO: "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO: "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO: "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO: "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO: "GET /static/admin/css/widgets.css HTTP/1.1" 200 11811
+INFO: "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+INFO: "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO: - Broken pipe from ('127.0.0.1', 64710)
+INFO: "POST /admin/vacancies/vacancy/add/ HTTP/1.1" 302 0
+INFO: "GET /admin/vacancies/vacancy/ HTTP/1.1" 200 22891
+INFO: "GET /static/admin/css/changelists.css HTTP/1.1" 200 7498
+INFO: "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO: "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+INFO: "GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+INFO: "GET /admin/vacancies/vacancy/add/ HTTP/1.1" 200 32210
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "POST /admin/vacancies/vacancy/add/ HTTP/1.1" 302 0
+INFO: "GET /admin/vacancies/vacancy/ HTTP/1.1" 200 23430
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET / HTTP/1.1" 200 15152
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+INFO: Watching for file changes with StatReloader
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 15152
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 9181
+INFO: Watching for file changes with StatReloader
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 15152
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 9260

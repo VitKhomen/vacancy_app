@@ -1,103 +1,374 @@
-/* homepage_user/static/homepage_user/css/homepage.css */
+/* ============================================================
+   JOBBOARD — homepage styles
+   ============================================================ */
 
-/* Баннер */
-.main-banner {
-    position: relative;
-    text-align: center;
-    color: white;
-}
-.main-banner img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-}
-.main-banner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+/* --- Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
-.main-banner-text h1 {
-    color: black;
-    font-weight: bold; /* Делает текст жирнее */
-
+:root {
+  --primary:   #2563eb;
+  --primary-d: #1d4ed8;
+  --accent:    #f59e0b;
+  --dark:      #0f172a;
+  --muted:     #64748b;
+  --light-bg:  #f8fafc;
+  --card-bg:   #ffffff;
+  --border:    #e2e8f0;
+  --radius:    12px;
+  --shadow-sm: 0 1px 4px rgba(15,23,42,.06);
+  --shadow-md: 0 4px 16px rgba(15,23,42,.10);
+  --shadow-lg: 0 8px 32px rgba(15,23,42,.14);
 }
 
-.main-banner-text p {
-    color: black;
-    font-weight: bold; /* Делает текст жирнее */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--light-bg);
+  color: var(--dark);
+  margin: 0;
 }
 
-.navbar-brand img {
-    height: 40px;
-}
-.nav-link i {
-    margin-right: 6px;
-}
-
-
-.nav-item {
-    margin-right: 6px;
-    font-weight: bold;
-    font-size: 18px; /* Пример: увеличивает размер текста и иконок */
-}
-
-.nav-item :hover {
-    color: #000; /* При наведении иконки становятся полностью черными */
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid var(--border);
+  padding: 0.55rem 0;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.btn-create {
-    margin-left: 15px;
-}
-
-/* Логотип компании */
-.company-logo {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-/* Лого в шапке */
+/* Logo — compact circle */
 .logo-img {
-    width: 40px;
-    height: 50px;
-    object-fit: cover;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5); /* Добавляет тень */
+  width: 34px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(37,99,235,.25);
+  transition: transform .2s ease;
+}
+.logo-img:hover { transform: scale(1.08); }
+
+.navbar-brand { padding: 0; margin-right: 1rem; }
+
+/* Nav links */
+.navbar .nav-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted) !important;
+  padding: 0.4rem 0.65rem;
+  border-radius: 8px;
+  transition: background .18s, color .18s;
+  white-space: nowrap;
+}
+.navbar .nav-link:hover {
+  background: #f1f5f9;
+  color: var(--dark) !important;
+}
+.navbar .nav-link i { font-size: 1rem; vertical-align: -0.1em; margin-right: 4px; }
+
+/* CTA button */
+.btn-create {
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.45rem 1.1rem;
+  border-radius: 8px;
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff !important;
+  transition: background .18s, box-shadow .18s;
+}
+.btn-create:hover {
+  background: var(--primary-d);
+  box-shadow: 0 4px 12px rgba(37,99,235,.35);
 }
 
+/* Sidebar toggle */
+.btn-outline-secondary {
+  border-radius: 8px;
+  border-color: var(--border);
+  color: var(--muted);
+  font-size: 1.1rem;
+  padding: 0.38rem 0.7rem;
+}
+.btn-outline-secondary:hover { background: #f1f5f9; border-color: #cbd5e1; }
 
-.badge {
-    padding: 8px 16px; /* Увеличивает внутренние отступы */
-    font-size: 14px; /* Увеличивает размер текста */
-    transition: background-color 0.3s ease; /* Плавный переход цвета */
+/* ============================================================
+   MAIN BANNER — full width
+   ============================================================ */
+.main-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.badge:hover {
-    background-color: #555; /* Цвет при наведении */
+.main-banner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
-.badge.bg-secondary {
-    background-color: #6c757d; /* Изначальный цвет Bootstrap */
+/* Subtle dark overlay for readability */
+.main-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(15,23,42,.35) 0%,
+    rgba(15,23,42,.55) 100%);
 }
 
-.badge.bg-secondary:hover {
-    background-color: #495057; /* Более темный оттенок при наведении */
+.main-banner-text {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  max-width: 680px;
+}
+.main-banner-text h1 {
+  color: #ffffff;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(0,0,0,.4);
+  margin-bottom: .75rem;
+}
+.main-banner-text p {
+  color: rgba(255,255,255,.88);
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-shadow: 0 1px 6px rgba(0,0,0,.3);
+  margin: 0;
 }
 
-
-
-
-/* Для золотой звезды в badge */
-.gold-star {
-    color: gold !important; /* Делает звезду золотой и переопределяет другие стили */
-    font-size: 1.2em; /* Немного увеличиваем размер звезды */
-    text-shadow: 0 0 3px rgba(255, 215, 0, 0.7), 0 0 7px rgba(255, 215, 0, 0.5); /* Более мягкое золотое свечение */
+/* ============================================================
+   SEARCH BAR
+   ============================================================ */
+.search-section {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+  box-shadow: var(--shadow-sm);
 }
 
+.search-section .input-group {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
 
-.badge.bg-dark {
-    background-color: #212529 !important; /* Темно-серый/почти черный фон от Bootstrap dark */
-    color: white; /* Делает текст внутри badge белым (если он там есть) */
+.search-section .form-control {
+  font-size: 0.9rem;
+  padding: 0.65rem 1rem;
+  border: 1.5px solid var(--border);
+  border-right: none;
+  border-radius: 0;
+}
+.search-section .form-control:focus {
+  box-shadow: none;
+  border-color: var(--primary);
+}
+
+.search-section .btn-outline-secondary {
+  border: 1.5px solid var(--border);
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: #fff;
+  padding: 0 1rem;
+}
+.search-section .btn-primary {
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0 1.4rem;
+  border-radius: 0;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.search-section .btn-primary:hover { background: var(--primary-d); }
+
+/* ============================================================
+   SIDEBAR LIST (left panel)
+   ============================================================ */
+.sidebar-list {
+    position: sticky;
+    top: 20px;          
+    align-self: flex-start;
+}
+
+.sidebar-list .list-group-item {
+  border: none;
+  border-radius: var(--radius) !important;
+  margin-bottom: 6px;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--dark);
+  background: var(--card-bg);
+  box-shadow: var(--shadow-sm);
+  transition: background .18s, box-shadow .18s, transform .18s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar-list .list-group-item:hover {
+  background: #eff6ff;
+  box-shadow: var(--shadow-md);
+  transform: translateX(3px);
+  text-decoration: none;
+}
+
+.sidebar-list .badge {
+  font-size: 0.75rem;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+/* Gold star */
+.gold-star  { color: #f59e0b !important; font-size: 0.9em; }
+.gold-icon  { color: #229ed9 !important; }
+
+/* ============================================================
+   FILTER BADGES (tag row)
+   ============================================================ */
+.filter-badges .badge {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #e2e8f0;
+  color: var(--dark);
+  transition: background .18s, color .18s, transform .15s;
+  border: none;
+}
+.filter-badges .badge:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   VACANCY CARDS
+   ============================================================ */
+.vacancy-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .22s, transform .22s, border-color .22s;
+}
+.vacancy-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  border-color: #bfdbfe;
+}
+
+.vacancy-card .card-icons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.vacancy-card .card-icons i {
+  font-size: 1rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .18s;
+}
+.vacancy-card .card-icons i:hover { color: var(--primary); }
+
+.vacancy-card h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--dark);
+}
+
+.vacancy-card .company-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.vacancy-salary {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #16a34a;
+  margin: 6px 0 2px;
+}
+.vacancy-company {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.vacancy-rating {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.vacancy-rating .bi-star-fill { color: var(--accent); }
+
+.vacancy-location {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.vacancy-location i { margin-right: 3px; }
+
+.vacancy-card .btn-primary {
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.38rem 1rem;
+  border-radius: 8px;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.vacancy-card .btn-primary:hover {
+  background: var(--primary-d);
+  box-shadow: 0 4px 12px rgba(37,99,235,.3);
+}
+
+/* ============================================================
+   OFFCANVAS
+   ============================================================ */
+.offcanvas-header { border-bottom: 1px solid var(--border); }
+.offcanvas .list-group-item {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.9rem 1.2rem;
+  cursor: pointer;
+  transition: background .18s;
+}
+.offcanvas .list-group-item:hover { background: #f8fafc; }
+
+/* ============================================================
+   RESPONSIVE TWEAKS
+   ============================================================ */
+@media (max-width: 767px) {
+  .main-banner { min-height: 280px; }
+  .main-banner-text h1 { font-size: 1.55rem; }
 }

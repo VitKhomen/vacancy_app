@@ -1,8 +1,10 @@
 from django.views.generic import TemplateView
+from django.db.models import Count
 
 from apps.vacancies.models import Vacancy
-from core.models import SiteSettings
-from communications.models import Response, Invitation
+from apps.core.models import SiteSettings
+from apps.communications.models import Response, Invitation
+from apps.companies.models import Company
 
 
 class HomePageView(TemplateView):
@@ -15,11 +17,13 @@ class HomePageView(TemplateView):
         context["logo"] = site_settings.logo if site_settings else None
         context["main_banner"] = site_settings.main_banner if site_settings else None
 
-        total_responses = Response.objects.count()
-        total_invitations = Invitation.objects.count()
-        context["total_responses"] = total_responses
-        context["total_invitations"] = total_invitations
+        context["total_responses"] = Response.objects.count()
+        context["total_invitations"] = Invitation.objects.count()
 
-        context["vacancies"] = Vacancy.objects.select_related("company", "profession").all()[:7]
+        context["vacancies"] = Vacancy.objects.select_related(
+            "company", "profession"
+        ).annotate(
+            feedback_count=Count("company__feedbacks"),
+        ).all()[:7]
 
         return context
