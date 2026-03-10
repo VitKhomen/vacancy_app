@@ -1690,3 +1690,6 @@ INFO: Z:\my_less\python\django\job_vacancy\apps\resumes\admin.py changed, reload
 INFO: Watching for file changes with StatReloader
 INFO: Z:\my_less\python\django\job_vacancy\apps\resumes\admin.py changed, reloading.
 INFO: Watching for file changes with StatReloader
+INFO: Watching for file changes with StatReloader
+INFO: Z:\my_less\python\django\job_vacancy\config\settings.py changed, reloading.
+INFO: Watching for file changes with StatReloader
