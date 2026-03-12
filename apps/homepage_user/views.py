@@ -24,6 +24,6 @@ class HomePageView(TemplateView):
             "company", "profession"
         ).annotate(
             feedback_count=Count("company__feedbacks"),
-        ).all()[:7]
+        ).exclude(hidden_vacancies__user=self.request.user).all()[:7]
 
         return context

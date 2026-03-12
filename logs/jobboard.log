@@ -1894,3 +1894,16 @@ INFO: Watching for file changes with StatReloader
 INFO: Watching for file changes with StatReloader
 INFO: "GET / HTTP/1.1" 200 15152
 INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 9260
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 15742
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 9260
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 200 31594
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 200 53332
+INFO: "GET /media/company_logos/2/photo_2026-02-20_15-40-00.jpg HTTP/1.1" 200 120304
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+WARNING: Not Found: /favicon.ico
+WARNING: "GET /favicon.ico HTTP/1.1" 404 2950
+WARNING: Method Not Allowed (POST): /
+WARNING: "POST / HTTP/1.1" 405 0
+WARNING: Method Not Allowed (POST): /
+WARNING: "POST / HTTP/1.1" 405 0

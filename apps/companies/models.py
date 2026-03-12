@@ -61,3 +61,24 @@ class FavoriteVacancy(models.Model):
 
     def __str__(self):
         return f"Favorite Vacancy: {self.vacancy} by {self.user}"
+
+
+class HiddenVacancy(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='hidden_vacancies')
+    vacancy = models.ForeignKey(
+        "vacancies.Vacancy", on_delete=models.CASCADE, related_name='hidden_by')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Hidden Vacancy"
+        verbose_name_plural = "Hidden Vacancies"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "vacancy"],
+                name="unique_hidden_vacancy"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.user} hidden {self.vacancy}"
