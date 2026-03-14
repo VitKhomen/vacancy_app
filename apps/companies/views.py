@@ -24,7 +24,7 @@ def toggle_favorite(request, vacancy_id):
 @require_POST
 def toggle_hidden_vacancy(request):
     vacancy_id = request.POST.get("vacancy_id")
-    vacancy = get_object_or_404(Vacancy, vacancy_id=vacancy_id)
+    vacancy = get_object_or_404(Vacancy, id=vacancy_id)
 
     hidden, created = HiddenVacancy.objects.get_or_create(
         user=request.user, vacancy=vacancy)

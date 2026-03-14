@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import toggle_favorite
+from .views import toggle_favorite, toggle_hidden_vacancy
 
 urlpatterns = [
     path("vacancies/<int:vacancy_id>/favorite/",
          toggle_favorite, name="toggle_favorite"),
+    path("toggle-hidden-vacancy/", toggle_hidden_vacancy,
+         name="toggle_hidden_vacancy"),
 ]

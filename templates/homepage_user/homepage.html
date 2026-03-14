@@ -74,104 +74,118 @@
 
       <!-- Filter tags -->
       <div class="filter-badges d-flex flex-wrap gap-2 mb-4">
-        <span class="badge">Для вас</span>
-        <span class="badge">Підробіток</span>
-        <span class="badge">від 16 років</span>
-        <span class="badge">Стажування</span>
-        <span class="badge">Віддалена</span>
+          <!-- Категория "Для вас" будет иметь ссылку на домашнюю страницу. Мы проверяем, есть ли в GET-запросе параметр filter. Если его нет, добавляем стиль bg-primary, который выделяет эту категорию среди других. Это помогает понять, в какой именно категории мы находимся. В противном случае добавляем стиль bg-secondary, который делает цвет категории сероватым, как и у остальных. -->
+          <a href="/"
+            class="badge {% if not request.GET.filter %}bg-primary{% else %}bg-secondary{% endif %}"
+            style="text-decoration:none;">
+            Для вас
+          </a>
+          
+          <!-- Здесь используется та же логика, но мы отправляем GET-запрос на домашнюю страницу с параметром filter и значением part_time. Это позволяет бэкенду понять, как именно фильтровать данные.  -->
+          <a href="?filter=part_time"
+            class="badge {% if request.GET.filter == 'part_time' %}bg-primary{% else %}bg-secondary{% endif %}"
+            style="text-decoration:none;">
+            Подработка
+          </a>
+
+          <a href="?filter=without_experience"
+            class="badge {% if request.GET.filter == 'without_experience' %}bg-primary{% else %}bg-secondary{% endif %}"
+            style="text-decoration:none;">
+            Без опыта
+          </a>
+
+          <a href="?filter=internship"
+            class="badge {% if request.GET.filter == 'internship' %}bg-primary{% else %}bg-secondary{% endif %}"
+            style="text-decoration:none;">
+            Стажировка
+          </a>
+
+          <a href="?filter=remote"
+            class="badge {% if request.GET.filter == 'remote' %}bg-primary{% else %}bg-secondary{% endif %}"
+            style="text-decoration:none;">
+            Удаленка
+          </a>
       </div>
 
       <!-- Vacancy cards -->
       <div class="d-flex flex-column gap-3">
+        {% if vacancies %}
+          {% for vacancy in vacancies %}
+          <div class="vacancy-card">
+            <div class="card-icons">
+              <i class="bi bi-star favorite-icon"
+                data-id="{{ vacancy.id }}"
+                data-active="false"
+                title="Додати в обрані"
+                style="cursor:pointer;"></i>
+              <i class="bi bi-eye-slash hide-icon"
+                style="cursor: pointer;"
+                data-id="{{ vacancy.id }}"
+                title="Скрыть вакансию"></i>
+            </div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="flex-grow-1 me-3">
+                <h5>{{ vacancy.title }}</h5>
 
-        {% for vacancy in vacancies %}
-        <div class="vacancy-card">
-          <div class="card-icons">
-            <i class="bi bi-star favorite-icon"
-               data-id="{{ vacancy.id }}"
-               data-active="false"
-               title="Додати в обрані"
-               style="cursor:pointer;"></i>
-            <i class="bi bi-eye-slash" title="Приховати"></i>
-          </div>
-          <div class="d-flex justify-content-between align-items-start">
-            <div class="flex-grow-1 me-3">
-              <h5>{{ vacancy.title }}</h5>
+                {% if vacancy.salary_from or vacancy.salary_to %}
+                  <p class="vacancy-salary">
+                    {% if vacancy.salary_from %}від {{ vacancy.salary_from|floatformat:0 }} ₴{% endif %}
+                    {% if vacancy.salary_to %} до {{ vacancy.salary_to|floatformat:0 }} ₴{% endif %}
+                    <small class="text-muted fw-normal">/ {{ vacancy.get_salary_type_display }}</small>
+                  </p>
+                {% elif vacancy.salary %}
+                  <p class="vacancy-salary">{{ vacancy.salary|floatformat:0 }} ₴</p>
+                {% else %}
+                  <p class="vacancy-salary text-muted fw-normal">Зарплата договірна</p>
+                {% endif %}
 
-              {% if vacancy.salary_from or vacancy.salary_to %}
-                <p class="vacancy-salary">
-                  {% if vacancy.salary_from %}від {{ vacancy.salary_from|floatformat:0 }} ₴{% endif %}
-                  {% if vacancy.salary_to %} до {{ vacancy.salary_to|floatformat:0 }} ₴{% endif %}
-                  <small class="text-muted fw-normal">/ {{ vacancy.get_salary_type_display }}</small>
+                <p class="vacancy-company">{{ vacancy.company.name }}</p>
+
+                <p class="vacancy-rating">
+                  <i class="bi bi-star-fill"></i>
+                  {{ vacancy.avg_rating|floatformat:1|default:"—" }} • {{ vacancy.feedback_count }} відгуків
                 </p>
-              {% elif vacancy.salary %}
-                <p class="vacancy-salary">{{ vacancy.salary|floatformat:0 }} ₴</p>
-              {% else %}
-                <p class="vacancy-salary text-muted fw-normal">Зарплата договірна</p>
-              {% endif %}
 
-              <p class="vacancy-company">{{ vacancy.company.name }}</p>
+                {% if vacancy.city %}
+                <p class="vacancy-location">
+                  <i class="bi bi-geo-alt"></i>{{ vacancy.city }}{% if vacancy.street %}, {{ vacancy.street }}{% endif %}
+                </p>
+                {% endif %}
 
-              <p class="vacancy-rating">
-                <i class="bi bi-star-fill"></i>
-                {{ vacancy.company.average_rating }} • {{ vacancy.company.feedbacks.count }} відгуків
-              </p>
-
-              {% if vacancy.city %}
-              <p class="vacancy-location">
-                <i class="bi bi-geo-alt"></i>{{ vacancy.city }}{% if vacancy.street %}, {{ vacancy.street }}{% endif %}
-              </p>
-              {% endif %}
-
-              <div class="d-flex gap-2 flex-wrap">
-                <span class="badge bg-light text-dark border" style="font-weight:600;font-size:.75rem;">
-                  {{ vacancy.get_employment_type_display }}
-                </span>
-                <span class="badge bg-light text-dark border" style="font-weight:600;font-size:.75rem;">
-                  {{ vacancy.get_schedule_display }}
-                </span>
+                <div class="d-flex gap-2 flex-wrap">
+                  <span class="badge bg-light text-dark border" style="font-weight:600;font-size:.75rem;">
+                    {{ vacancy.get_employment_type_display }}
+                  </span>
+                  <span class="badge bg-light text-dark border" style="font-weight:600;font-size:.75rem;">
+                    {{ vacancy.get_schedule_display }}
+                  </span>
+                </div>
               </div>
+
+              {% if vacancy.company.logo %}
+              <img src="{{ vacancy.company.logo.url }}" alt="{{ vacancy.company.name }}" class="company-logo">
+              {% endif %}
             </div>
 
-            {% if vacancy.company.logo %}
-            <img src="{{ vacancy.company.logo.url }}" alt="{{ vacancy.company.name }}" class="company-logo">
-            {% endif %}
-          </div>
-
-          <div class="mt-3">
-            <form method="POST" action="#">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-primary">Відгукнутись</button>
-            </form>
-          </div>
-        </div>
-        {% empty %}
-        <!-- Fallback static card -->
-        <div class="vacancy-card">
-          <div class="card-icons">
-            <i class="bi bi-star favorite-icon" data-active="false" title="Додати в обрані" style="cursor:pointer;"></i>
-            <i class="bi bi-eye-slash"></i>
-          </div>
-          <div class="d-flex justify-content-between align-items-start">
-            <div class="flex-grow-1 me-3">
-              <h5>Frontend розробник</h5>
-              <p class="vacancy-salary">від 140 000 ₴ / місяць</p>
-              <p class="vacancy-company">АТ Дороги і Мости</p>
-              <p class="vacancy-rating"><i class="bi bi-star-fill"></i> 4.4 • 88 відгуків</p>
-              <p class="vacancy-location"><i class="bi bi-geo-alt"></i>Київ, вул. Хрещатик</p>
-              <div class="d-flex gap-2">
-                <span class="badge bg-light text-dark border" style="font-weight:600;font-size:.75rem;">Повна зайнятість</span>
-                <span class="badge bg-light text-dark border" style="font-weight:600;font-size:.75rem;">Денні зміни</span>
-              </div>
+            <div class="mt-3">
+              <form method="POST" action="#">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Відгукнутись</button>
+              </form>
             </div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/1024px-ChatGPT-Logo.svg.png"
-                 alt="Лого" class="company-logo">
           </div>
-          <div class="mt-3">
-            <button class="btn btn-primary">Відгукнутись</button>
+          {% endfor %}
+        {% else %}
+          <div class="text-center py-5">
+            <i class="bi bi-briefcase" style="font-size: 3rem; color: var(--muted);"></i>
+            <h5 class="mt-3 fw-bold">Вакансій не знайдено</h5>
+            <p class="text-muted">У цій категорії поки що немає вакансій.<br>Спробуйте вибрати іншу категорію.</p>
+            <a href="/" class="btn btn-primary mt-2">
+              <i class="bi bi-arrow-left me-1"></i>Повернутись до всіх вакансій
+            </a>
           </div>
-        </div>
-        {% endfor %}
+        {% endif %}
+
 
       </div><!-- /vacancy cards -->
     </div><!-- /col -->

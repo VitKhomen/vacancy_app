@@ -1,10 +1,10 @@
 from django.views.generic import TemplateView
-from django.db.models import Count
+from django.db.models import Count, Avg
 
 from apps.vacancies.models import Vacancy
 from apps.core.models import SiteSettings
 from apps.communications.models import Response, Invitation
-from apps.companies.models import Company
+from .utils import filterd_objects_with_filter_type
 
 
 class HomePageView(TemplateView):
@@ -19,11 +19,22 @@ class HomePageView(TemplateView):
 
         context["total_responses"] = Response.objects.count()
         context["total_invitations"] = Invitation.objects.count()
+        context["user_city"] = self.request.user.profile.location if self.request.user.is_authenticated else 'Kiev'
 
-        context["vacancies"] = Vacancy.objects.select_related(
+        vacancies = Vacancy.objects.select_related(
             "company", "profession"
         ).annotate(
             feedback_count=Count("company__feedbacks"),
-        ).exclude(hidden_vacancies__user=self.request.user).all()[:7]
+            avg_rating=Avg("company__feedbacks__rating"),
+        ).exclude(
+            hidden_by__user=self.request.user
+            if self.request.user.is_authenticated
+            else None
+        )
+
+        filter_type = self.request.GET.get("filter")
+        vacancies = filterd_objects_with_filter_type(vacancies, filter_type)
+
+        context["vacancies"] = vacancies[:7]
 
         return context
