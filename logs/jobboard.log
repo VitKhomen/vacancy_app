@@ -2228,3 +2228,71 @@ INFO: Watching for file changes with StatReloader
 INFO: "GET / HTTP/1.1" 200 15910
 INFO: "GET /static/static/js/hidden_vacancy.js HTTP/1.1" 304 0
 INFO: - Broken pipe from ('127.0.0.1', 63609)
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 15910
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 304 0
+INFO: "GET /media/company_logos/2/photo_2026-02-20_15-40-00.jpg HTTP/1.1" 304 0
+INFO: "GET /static/static/js/favorite_vacancy.js HTTP/1.1" 304 0
+INFO: "GET /static/static/js/hidden_vacancy.js HTTP/1.1" 304 0
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 304 0
+WARNING: Not Found: /favicon.ico
+WARNING: "GET /favicon.ico HTTP/1.1" 404 3098
+INFO: "GET /admin HTTP/1.1" 301 0
+INFO: "GET /admin/ HTTP/1.1" 200 20386
+INFO: "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+INFO: "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+INFO: "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO: "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO: "GET /static/admin/css/responsive.css HTTP/1.1" 200 16273
+INFO: "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO: "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO: "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+INFO: "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+WARNING: Not Found: /vacancy/1
+WARNING: "GET /vacancy/1 HTTP/1.1" 404 3531
+ERROR: Internal Server Error: /detail/vacancy/1/
+Traceback (most recent call last):
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\views\generic\detail.py", line 112, in get
+    self.object = self.get_object()
+                  ~~~~~~~~~~~~~~~^^
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\views\generic\detail.py", line 46, in get_object
+    raise AttributeError(
+    ...<2 lines>...
+    )
+AttributeError: Generic detail view DetailVacancyView must be called with either an object pk or a slug in the URLconf.
+ERROR: "GET /detail/vacancy/1/ HTTP/1.1" 500 93569
+INFO: Z:\my_less\python\django\job_vacancy\apps\detail_vacancy\urls.py changed, reloading.
+INFO: Watching for file changes with StatReloader
+INFO: "GET /detail/vacancy/1/ HTTP/1.1" 200 0
+INFO: "GET /detail/vacancy/2 HTTP/1.1" 301 0
+INFO: "GET /detail/vacancy/2/ HTTP/1.1" 200 0
+INFO: "GET /detail/vacancy/3 HTTP/1.1" 301 0
+INFO: "GET /detail/vacancy/3/ HTTP/1.1" 200 0
+INFO: "GET /admin/ HTTP/1.1" 200 20386
+INFO: "GET /admin/vacancies/vacancy/ HTTP/1.1" 200 23216
+INFO: "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO: "GET /static/admin/css/changelists.css HTTP/1.1" 200 7498
+INFO: "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO: "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO: "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO: "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO: "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO: "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+INFO: "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO: "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO: "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO: "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO: "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+INFO: "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+INFO: Z:\my_less\python\django\job_vacancy\apps\detail_vacancy\views.py changed, reloading.
+INFO: Watching for file changes with StatReloader
