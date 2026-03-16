@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ vacancy.title }} — {{ vacancy.company.name }}{% endblock %}
+
+{% block style %}
+<link href="{% static 'detail_vacancy/css/detail_vacancy.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container py-4 pb-footer">
+  <div class="row g-4">
+
+    <!-- ═══════════════════════════════════════
+         LEFT COLUMN
+    ════════════════════════════════════════ -->
+    <div class="col-lg-8">
+
+      <!-- ── Title card ── -->
+      <div class="vacancy-card" id="vacancy-card-detail">
+
+        <h3>{{ vacancy.title }}</h3>
+
+        <!-- Salary -->
+        {% if vacancy.salary %}
+          <p class="salary-line">{{ vacancy.salary|floatformat:0 }} ₴</p>
+        {% elif vacancy.salary_from and vacancy.salary_to %}
+          <p class="salary-line">{{ vacancy.salary_from|floatformat:0 }} – {{ vacancy.salary_to|floatformat:0 }} ₴</p>
+        {% elif vacancy.salary_from %}
+          <p class="salary-line">від {{ vacancy.salary_from|floatformat:0 }} ₴</p>
+        {% elif vacancy.salary_to %}
+          <p class="salary-line">до {{ vacancy.salary_to|floatformat:0 }} ₴</p>
+        {% else %}
+          <p class="salary-line negotiated">Salary negotiable</p>
+        {% endif %}
+
+        <!-- Meta chips -->
+        <div class="meta-chips">
+          <span class="meta-chip">
+            <i class="bi bi-calendar3"></i>{{ vacancy.get_salary_type_display }}
+          </span>
+          <span class="meta-chip">
+            <i class="bi bi-briefcase"></i>
+            {% if vacancy.experience_required == "without_experience" %}
+              No experience required
+            {% else %}
+              {{ experience_required }}
+            {% endif %}
+          </span>
+          <span class="meta-chip">
+            <i class="bi bi-clock"></i>{{ vacancy.get_employment_type_display }}
+          </span>
+          <span class="meta-chip">
+            <i class="bi bi-calendar-week"></i>{{ vacancy.get_schedule_display }}
+          </span>
+          {% if vacancy.working_hours %}
+          <span class="meta-chip">
+            <i class="bi bi-hourglass-split"></i>{{ vacancy.working_hours }}
+          </span>
+          {% endif %}
+          {% if vacancy.city %}
+          <span class="meta-chip">
+            <i class="bi bi-geo-alt"></i>{{ vacancy.city }}
+          </span>
+          {% endif %}
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-row">
+          <button class="btn-apply">
+            <i class="bi bi-send-fill me-1"></i>Apply
+          </button>
+          <button class="btn-contact">
+            <i class="bi bi-chat-dots me-1"></i>Contact
+          </button>
+          <i class="bi btn-icon favorite-icon {% if vacancy.id in user_favorites %}bi-star-fill text-warning{% else %}bi-star{% endif %}"
+             data-id="{{ vacancy.id }}"
+             title="{% if vacancy.id in user_favorites %}Remove from favourites{% else %}Add to favourites{% endif %}"
+             style="cursor:pointer;font-size:1.1rem;"></i>
+
+          <!-- More options -->
+          <div class="position-relative">
+            <button class="btn-icon" id="more-options-btn" title="More options">
+              <i class="bi bi-three-dots"></i>
+            </button>
+            <div id="more-options-menu" class="custom-dropdown d-none">
+              <button class="dropdown-item" id="hide-this-vacancy">
+                <i class="bi bi-eye-slash"></i>Hide this vacancy
+              </button>
+              <button class="dropdown-item" id="hide-company-vacancies-1">
+                <i class="bi bi-building icon-strikethrough"></i>Hide all company vacancies
+              </button>
+              <button class="dropdown-item text-danger" id="report-vacancy">
+                <i class="bi bi-flag"></i>Report vacancy
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /title card -->
+
+      <!-- ── Responsibilities ── -->
+      {% if responsibilities %}
+      <div class="vacancy-card">
+        <h5><i class="bi bi-list-check me-2 text-primary"></i>Responsibilities</h5>
+        <ul>
+          {% for item in responsibilities %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- ── Conditions ── -->
+      {% if conditions %}
+      <div class="vacancy-card">
+        <h5><i class="bi bi-patch-check me-2 text-primary"></i>Conditions</h5>
+        <ul>
+          {% for item in conditions %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- ── Description ── -->
+      {% if vacancy.description %}
+      <div class="vacancy-card">
+        <h5><i class="bi bi-file-text me-2 text-primary"></i>Description</h5>
+        <p>{{ vacancy.description }}</p>
+      </div>
+      {% endif %}
+
+      <!-- ── Location ── -->
+      <div class="vacancy-card">
+        <h5><i class="bi bi-geo-alt me-2 text-primary"></i>Work location</h5>
+        <p class="location-line">
+          <i class="bi bi-geo-alt-fill"></i>
+          {{ vacancy.city }}{% if vacancy.street %}, {{ vacancy.street }}{% endif %}
+        </p>
+        <p class="publish-date">
+          Published {{ vacancy.created_at|date:"d F Y" }}{% if vacancy.city %} · {{ vacancy.city }}{% endif %}
+        </p>
+        <div class="action-row">
+          <button class="btn-apply">
+            <i class="bi bi-send me-1"></i>Apply
+          </button>
+          <button class="btn-icon danger" title="Report">
+            <i class="bi bi-flag"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── Company reviews ── -->
+      <div class="vacancy-card">
+        <h5><i class="bi bi-star me-2 text-primary"></i>Company reviews</h5>
+
+        {% if feedbacks_company %}
+        <div class="row row-cols-1 row-cols-md-2 g-3 mb-3">
+          {% for review in feedbacks_company %}
+          <div class="col">
+            <div class="review-card">
+              <p class="review-title">{{ review.company.name|truncatechars:22 }}</p>
+              <div class="mb-1" style="font-size:.8rem;">
+                {{ stars_rating|safe }}
+                <span class="text-muted ms-1" style="font-size:.75rem;">{{ review.rating }}/5</span>
+              </div>
+              <p class="review-text mb-0">{{ review.comment|truncatechars:80 }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-muted" style="font-size:.875rem;">No reviews yet.</p>
+        {% endif %}
+
+        <div class="action-row">
+          <button class="btn-apply" style="font-size:.82rem;padding:.4rem 1rem;">
+            <i class="bi bi-pencil-square me-1"></i>Write a review
+          </button>
+          <button class="btn-contact" style="font-size:.82rem;padding:.4rem 1rem;">
+            <i class="bi bi-chat-dots me-1"></i>All reviews
+          </button>
+        </div>
+      </div>
+
+      <!-- ── Related vacancies from same company ── -->
+      {% if vacancies_company %}
+      <div class="related-vacancies mt-2">
+        <h5 class="fw-bold mb-3" style="font-family:'Syne',sans-serif;">
+          More vacancies at {{ vacancy.company.name }}
+        </h5>
+        <div class="d-flex flex-column gap-3">
+          {% for v in vacancies_company %}
+          <div class="related-card">
+            <div class="d-flex gap-1 mb-2" style="font-size:.9rem;color:#94a3b8;">
+              <i class="bi bi-star favorite-icon" data-id="{{ v.id }}" style="cursor:pointer;" title="Add to favourites"></i>
+              <i class="bi bi-eye-slash" style="cursor:pointer;" title="Hide"></i>
+            </div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="flex-grow-1 me-2">
+                <h5>{{ v.title }}</h5>
+                {% if v.salary %}
+                  <p class="salary">{{ v.salary|floatformat:0 }} ₴</p>
+                {% elif v.salary_from or v.salary_to %}
+                  <p class="salary">
+                    {% if v.salary_from %}від {{ v.salary_from|floatformat:0 }}{% endif %}
+                    {% if v.salary_to %} – {{ v.salary_to|floatformat:0 }}{% endif %} ₴
+                  </p>
+                {% else %}
+                  <p class="salary" style="color:var(--muted);font-weight:500;">Negotiable</p>
+                {% endif %}
+                <p class="company-name">{{ v.company.name }}</p>
+                <p class="rating-line">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  {{ rating }} · {{ v.company.feedbacks.count }} reviews
+                </p>
+                {% if v.city %}
+                <p class="city-line"><i class="bi bi-geo-alt me-1"></i>{{ v.city }}{% if v.street %}, {{ v.street }}{% endif %}</p>
+                {% endif %}
+                <button class="btn-respond">Apply</button>
+              </div>
+              {% if v.company.logo %}
+              <img src="{{ v.company.logo.url }}" alt="{{ v.company.name }}" class="company-logo">
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="mt-3">
+          <button class="btn-contact" style="font-size:.82rem;">
+            <i class="bi bi-plus-circle me-1"></i>More vacancies
+          </button>
+        </div>
+      </div>
+      {% endif %}
+
+    </div><!-- /left col -->
+
+    <!-- ═══════════════════════════════════════
+         RIGHT COLUMN — sidebar
+    ════════════════════════════════════════ -->
+    <div class="col-lg-4">
+      <div class="sticky-sidebar">
+
+        <!-- Company card -->
+        <div class="company-sidebar-card">
+          <div class="d-flex align-items-center flex-grow-1 overflow-hidden">
+            {% if vacancy.company.logo %}
+            <img src="{{ vacancy.company.logo.url }}" alt="{{ vacancy.company.name }}" class="company-logo">
+            {% endif %}
+            <div class="overflow-hidden">
+              <h6 class="text-truncate">{{ vacancy.company.name }}</h6>
+              <small>{{ vacancy.company.feedbacks.count }} reviews</small>
+            </div>
+          </div>
+          <div class="star-rating text-nowrap" style="font-size:.8rem;">
+            {{ stars_rating|safe }}
+            <span class="ms-1 fw-bold" style="color:var(--dark);">{{ rating }}</span>
+          </div>
+        </div>
+
+        <!-- Similar vacancies -->
+        {% if similar_vacancies %}
+        <p class="fw-bold mb-2 mt-3" style="font-family:'Syne',sans-serif;font-size:.9rem;color:var(--dark);">
+          You might also like
+        </p>
+        {% for sv in similar_vacancies %}
+        <div class="recommended-card">
+          <p class="rec-title">{{ sv.title }}</p>
+          {% if sv.salary %}
+            <p class="rec-salary">{{ sv.salary|floatformat:0 }} ₴</p>
+          {% elif sv.salary_from or sv.salary_to %}
+            <p class="rec-salary">
+              {% if sv.salary_from %}від {{ sv.salary_from|floatformat:0 }}{% endif %}
+              {% if sv.salary_to %} – {{ sv.salary_to|floatformat:0 }}{% endif %} ₴
+            </p>
+          {% else %}
+            <p class="rec-salary" style="color:var(--muted);font-weight:400;">Negotiable</p>
+          {% endif %}
+          <p class="rec-company">{{ sv.company.name }}</p>
+        </div>
+        {% endfor %}
+        <a href="#" class="more-link">1000+ matching vacancies →</a>
+        {% endif %}
+
+      </div>
+    </div><!-- /right col -->
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     STICKY FOOTER
+════════════════════════════════════════ -->
+<div id="vacancy-footer" class="vacancy-footer d-none">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-2">
+      <button class="btn-apply" style="font-size:.85rem;padding:.45rem 1.1rem;">
+        <i class="bi bi-send-fill me-1"></i>Apply
+      </button>
+      <button class="btn-icon favorite-icon-mirror {% if vacancy.id in user_favorites %}active{% endif %}"
+              title="{% if vacancy.id in user_favorites %}Remove from favourites{% else %}Add to favourites{% endif %}">
+        <i class="bi {% if vacancy.id in user_favorites %}bi-star-fill text-warning{% else %}bi-star{% endif %}"></i>
+      </button>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <button class="btn-icon" title="Hide vacancy"><i class="bi bi-eye-slash"></i></button>
+      <button id="hide-company-vacancies" class="btn-icon" title="Hide company vacancies">
+        <i class="bi bi-building icon-strikethrough"></i>
+      </button>
+      <button class="btn-icon danger" title="Report"><i class="bi bi-flag"></i></button>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'detail_vacancy/js/detail_vacancy.js' %}"></script>
+<script src="{% static 'homepage_user/js/favorite_vacancy.js' %}"></script>
+
+<script>
+// Mirror: footer star syncs with main <i> via MutationObserver (no extra fetch)
+document.addEventListener("DOMContentLoaded", () => {
+  // mainIcon is now <i class="favorite-icon"> — same structure as homepage
+  const mainIcon  = document.querySelector("#vacancy-card-detail .favorite-icon");
+  const mirrorBtn = document.querySelector(".favorite-icon-mirror");
+
+  if (!mainIcon || !mirrorBtn) return;
+
+  const mirrorStar = mirrorBtn.querySelector("i");
+
+  // Delegate mirror click to main icon → only one fetch fires
+  mirrorBtn.addEventListener("click", () => mainIcon.click());
+
+  // Watch class changes on main icon and sync mirror
+  new MutationObserver(() => {
+    const isActive = mainIcon.classList.contains("bi-star-fill");
+    mirrorStar.classList.toggle("bi-star-fill", isActive);
+    mirrorStar.classList.toggle("text-warning",  isActive);
+    mirrorStar.classList.toggle("bi-star",       !isActive);
+    mirrorBtn.classList.toggle("active",          isActive);
+  }).observe(mainIcon, { attributes: true, attributeFilter: ["class"] });
+});
+</script>
+{% endblock %}

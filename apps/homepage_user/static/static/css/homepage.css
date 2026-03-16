@@ -206,12 +206,6 @@ body {
 /* ============================================================
    SIDEBAR LIST (left panel)
    ============================================================ */
-.sidebar-list {
-    position: sticky;
-    top: 20px;          
-    align-self: flex-start;
-}
-
 .sidebar-list .list-group-item {
   border: none;
   border-radius: var(--radius) !important;
@@ -371,4 +365,16 @@ body {
 @media (max-width: 767px) {
   .main-banner { min-height: 280px; }
   .main-banner-text h1 { font-size: 1.55rem; }
+}
+
+/* Vacancy title link */
+.vacancy-title-link {
+  color: var(--dark);
+  text-decoration: none;
+  transition: color .18s;
+}
+.vacancy-title-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

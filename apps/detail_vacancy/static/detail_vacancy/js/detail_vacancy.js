@@ -1,51 +1,34 @@
+document.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener("scroll", function () {
-const vacancyCard = document.querySelector(".vacancy-card");
-const reviewsBlock = document.querySelector("#reviews-block");
-const footer = document.getElementById("vacancy-footer");
+  // ── Sticky footer on scroll ──────────────────────────────
+  const vacancyCard = document.getElementById("vacancy-card-detail");
+  const footer      = document.getElementById("vacancy-footer");
 
-const vacancyBottom = vacancyCard.getBoundingClientRect().bottom;
-const reviewsTop = reviewsBlock.getBoundingClientRect().top;
-
-if (vacancyBottom < 0 && reviewsTop > window.innerHeight) {
-  footer.classList.remove("d-none");
-} else {
-  footer.classList.add("d-none");
-}
-});
-
-
-
-// Получаем элементы
-const moreBtn = document.getElementById("more-options-btn");
-const moreMenu = document.getElementById("more-options-menu");
-
-moreBtn.addEventListener("click", function(e) {
-  e.stopPropagation();
-  moreMenu.classList.toggle("d-none");
-});
-
-document.addEventListener("click", function() {
-  if (!moreMenu.classList.contains("d-none")) {
-    moreMenu.classList.add("d-none");
+  if (vacancyCard && footer) {
+    const observer = new IntersectionObserver(
+      ([entry]) => footer.classList.toggle("d-none", entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(vacancyCard);
   }
-});
 
-// Действия кнопок
-document.getElementById("hide-this-vacancy").addEventListener("click", function() {
-  document.getElementById("vacancy-card-detail").style.display = "none";
-  moreMenu.classList.add("d-none");
-});
+  // ── More-options dropdown ────────────────────────────────
+  const moreBtn  = document.getElementById("more-options-btn");
+  const moreMenu = document.getElementById("more-options-menu");
 
-document.getElementById("hide-company-vacancies-1").addEventListener("click", function() {
-  const companyVacancies = document.querySelectorAll(".related-vacancies .card");
-  companyVacancies.forEach(v => v.style.display = "none");
-  const relatedBlock = document.querySelector(".related-vacancies");
-  if (relatedBlock) relatedBlock.style.display = "none";
-  moreMenu.classList.add("d-none");
-});
+  if (moreBtn && moreMenu) {
+    moreBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      moreMenu.classList.toggle("d-none");
+    });
+    document.addEventListener("click", () => moreMenu.classList.add("d-none"));
+  }
 
-document.getElementById("report-vacancy").addEventListener("click", function() {
-  alert("Спасибо! Вакансия отправлена на модерацию.");
-  moreMenu.classList.add("d-none");
+  // ── Hide vacancy action ──────────────────────────────────
+  document.getElementById("hide-this-vacancy")?.addEventListener("click", () => {
+    document.getElementById("vacancy-card-detail")
+      ?.closest(".vacancy-card")
+      ?.remove();
+  });
+
 });
