@@ -73,10 +73,10 @@
           <button class="btn-contact">
             <i class="bi bi-chat-dots me-1"></i>Contact
           </button>
-          <i class="bi btn-icon favorite-icon {% if vacancy.id in user_favorites %}bi-star-fill text-warning{% else %}bi-star{% endif %}"
+          <i class="bi favorite-icon {% if vacancy.id in user_favorites %}bi-star-fill text-warning{% else %}bi-star{% endif %}"
              data-id="{{ vacancy.id }}"
              title="{% if vacancy.id in user_favorites %}Remove from favourites{% else %}Add to favourites{% endif %}"
-             style="cursor:pointer;font-size:1.1rem;"></i>
+             style="cursor:pointer; font-size:1.2rem;"></i>
 
           <!-- More options -->
           <div class="position-relative">
@@ -84,9 +84,12 @@
               <i class="bi bi-three-dots"></i>
             </button>
             <div id="more-options-menu" class="custom-dropdown d-none">
-              <button class="dropdown-item" id="hide-this-vacancy">
-                <i class="bi bi-eye-slash"></i>Hide this vacancy
-              </button>
+              <form action="{% url 'hide_vacancy' vacancy.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">
+                  <i class="bi bi-eye-slash me-2"></i>Hide this vacancy
+                </button>
+              </form>
               <button class="dropdown-item" id="hide-company-vacancies-1">
                 <i class="bi bi-building icon-strikethrough"></i>Hide all company vacancies
               </button>
@@ -316,7 +319,7 @@
 </div>
 
 <script src="{% static 'detail_vacancy/js/detail_vacancy.js' %}"></script>
-<script src="{% static 'homepage_user/js/favorite_vacancy.js' %}"></script>
+<script src="{% static 'static/js/favorite_vacancy.js' %}"></script>
 
 <script>
 // Mirror: footer star syncs with main <i> via MutationObserver (no extra fetch)

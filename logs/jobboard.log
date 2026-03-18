@@ -2947,3 +2947,176 @@ WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
 INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
 INFO: "GET / HTTP/1.1" 200 18591
 INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 18591
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 304 0
+INFO: "GET /media/company_logos/2/photo_2026-02-20_15-40-00.jpg HTTP/1.1" 304 0
+INFO: "GET /static/static/js/favorite_vacancy.js HTTP/1.1" 304 0
+INFO: "GET /static/static/js/hidden_vacancy.js HTTP/1.1" 304 0
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 304 0
+WARNING: Not Found: /favicon.ico
+WARNING: "GET /favicon.ico HTTP/1.1" 404 3303
+INFO: "POST /vacancy/toggle/3/ HTTP/1.1" 200 19
+INFO: "GET /detail/3/ HTTP/1.1" 200 16314
+INFO: "GET /static/detail_vacancy/js/detail_vacancy.js HTTP/1.1" 304 0
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: "GET /static/detail_vacancy/css/detail_vacancy.css HTTP/1.1" 304 0
+INFO: "POST /vacancy/toggle/3/ HTTP/1.1" 200 21
+INFO: "GET /detail/1/ HTTP/1.1" 200 16319
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: - Broken pipe from ('127.0.0.1', 53343)
+INFO: Z:\my_less\python\django\job_vacancy\apps\vacancies\models.py changed, reloading.
+INFO: Watching for file changes with StatReloader
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 18556
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 200 31594
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 200 53332
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 10029
+INFO: "GET /media/company_logos/2/photo_2026-02-20_15-40-00.jpg HTTP/1.1" 200 120304
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+WARNING: Not Found: /favicon.ico
+WARNING: "GET /favicon.ico HTTP/1.1" 404 3303
+INFO: "GET /detail/1/ HTTP/1.1" 200 16535
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: "GET /static/detail_vacancy/css/detail_vacancy.css HTTP/1.1" 200 11062
+INFO: "GET /static/detail_vacancy/js/detail_vacancy.js HTTP/1.1" 200 1406
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: "GET /?filter=part_time HTTP/1.1" 200 8586
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: "GET /?filter=internship HTTP/1.1" 200 8586
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: "GET / HTTP/1.1" 200 18556
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: "GET /detail/1/ HTTP/1.1" 200 16535
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+ERROR: Internal Server Error: /vacancy/vacancy/hide/1/
+Traceback (most recent call last):
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'homepage_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "Z:\my_less\python\django\job_vacancy\apps\companies\views.py", line 30, in hide_vacancy
+    return redirect("homepage_user:homepage")
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'homepage_user' is not a registered namespace
+ERROR: "POST /vacancy/vacancy/hide/1/ HTTP/1.1" 500 105560
+INFO: "GET / HTTP/1.1" 200 18979
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 10029
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 200 31594
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 200 53332
+INFO: "GET /media/company_logos/2/photo_2026-02-20_15-40-00.jpg HTTP/1.1" 200 120304
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+WARNING: Not Found: /favicon.ico
+WARNING: "GET /favicon.ico HTTP/1.1" 404 3303
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 18556
+INFO: "GET /media/site_settings/banner/image-2730-1588323248-620x414.jpg HTTP/1.1" 200 31594
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 10029
+INFO: "GET /media/site_settings/logo/logo.png HTTP/1.1" 200 53332
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: "GET /media/company_logos/2/photo_2026-02-20_15-40-00.jpg HTTP/1.1" 200 120304
+WARNING: Not Found: /favicon.ico
+WARNING: "GET /favicon.ico HTTP/1.1" 404 3303
+INFO: "GET /detail/1/ HTTP/1.1" 200 16527
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: Watching for file changes with StatReloader
+INFO: "GET /detail/1/ HTTP/1.1" 200 16280
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 9410
+WARNING: "GET /static/homepage_user/js/favorite_vacancy.js HTTP/1.1" 404 2035
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+WARNING: Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING: "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3414
+INFO: Watching for file changes with StatReloader
+INFO: "GET / HTTP/1.1" 200 18549
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 200 10029
+INFO: "GET /static/static/js/favorite_vacancy.js HTTP/1.1" 200 1400
+WARNING: Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING: "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3455
+INFO: - Broken pipe from ('127.0.0.1', 63401)
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "GET /detail/1/ HTTP/1.1" 200 16453
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "GET /detail/1/ HTTP/1.1" 200 16505
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+ERROR: Internal Server Error: /vacancy/hide/1/
+Traceback (most recent call last):
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'homepage_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "Z:\my_less\python\django\job_vacancy\apps\companies\views.py", line 30, in hide_vacancy
+    return redirect("homepage_user:homepage")
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "Z:\my_less\python\django\job_vacancy\venv\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'homepage_user' is not a registered namespace
+ERROR: "POST /vacancy/hide/1/ HTTP/1.1" 500 105472
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/1/ HTTP/1.1" 200 19
+INFO: "GET /detail/3/ HTTP/1.1" 200 16871
+INFO: "GET /static/static/js/favorite_vacancy.js HTTP/1.1" 304 0
+INFO: "GET /static/static/css/homepage.css HTTP/1.1" 304 0
+INFO: "POST /vacancy/toggle/3/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/3/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/3/ HTTP/1.1" 200 19
+INFO: "POST /vacancy/toggle/3/ HTTP/1.1" 200 21
+INFO: "POST /vacancy/toggle/3/ HTTP/1.1" 200 19
+INFO: - Broken pipe from ('127.0.0.1', 63400)
+INFO: - Broken pipe from ('127.0.0.1', 63421)

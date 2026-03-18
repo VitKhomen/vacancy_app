@@ -378,3 +378,28 @@ body {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* ── Messages ─────────────────────────────────── */
+.messages-container {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 360px;
+  width: 100%;
+}
+
+.messages-container .alert {
+  font-size: .875rem;
+  padding: .75rem 1rem;
+  border-color: var(--border) !important;
+  animation: slideInRight .25s ease;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}

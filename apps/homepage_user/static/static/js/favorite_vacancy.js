@@ -15,9 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.status === "added") {
           icon.classList.remove("bi-star");
           icon.classList.add("bi-star-fill", "text-warning");
+          icon.title = "Remove from favourites";
         } else if (data.status === "removed") {
           icon.classList.remove("bi-star-fill", "text-warning");
           icon.classList.add("bi-star");
+          icon.title = "Add to favourites";
         }
       });
     });

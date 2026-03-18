@@ -3,15 +3,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from apps.companies.views import toggle_favorite
+from apps.companies.views import toggle_favorite, hide_vacancy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.homepage_user.urls')),
-    path("vacancy/", include("apps.companies.urls")),
-    path("detail/", include("apps.detail_vacancy.urls")),
+    path('detail/', include('apps.detail_vacancy.urls')),
     path('vacancy/toggle/<int:vacancy_id>/',
          toggle_favorite, name='toggle_favorite'),
+    path('vacancy/hide/<int:pk>/', hide_vacancy, name='hide_vacancy'),
 ]
 
 if settings.DEBUG:
