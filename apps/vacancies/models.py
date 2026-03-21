@@ -4,7 +4,31 @@ from django.conf import settings
 from apps.professions.models import Profession
 
 
+class VacancyQuerySet(models.QuerySet):
+    def visible_for_user(self, user):
+        if not user.is_authenticated:
+            return self
+
+        # IDs of vacancies hidden by the user
+        hidden_vacancies = user.hidden_vacancies.values_list(
+            'vacancy_id', flat=True
+        )
+
+        # IDs of companies hidden by the user
+        hidden_companies = user.hidden_companies.values_list(
+            'company_id', flat=True
+        )
+
+        return self.exclude(
+            id__in=hidden_vacancies
+        ).exclude(
+            company_id__in=hidden_companies
+        )
+
+
 class Vacancy(models.Model):
+    objects = VacancyQuerySet.as_manager()
+
     company = models.ForeignKey(
         "companies.Company", on_delete=models.CASCADE, related_name='vacancies')
     profession = models.ForeignKey(
@@ -27,9 +51,9 @@ class Vacancy(models.Model):
             ('twice_monthly', '2 раза в месяц'),
             ('daily', 'ежедневно'),
             ('hourly', 'по часам'),
-            ('negotiated', 'договорная')
+            ('negotiated', 'договорная'),
         ],
-        default="monthly"
+        default='monthly'
     )
     experience = models.CharField(max_length=255, blank=True, null=True)
     experience_from = models.PositiveIntegerField(blank=True, null=True)
@@ -41,7 +65,7 @@ class Vacancy(models.Model):
             ('part_time', 'Частичная занятость'),
             ('internship', 'Стажировка'),
             ('contract', 'Контракт'),
-            ('remote', 'Удалённая работа')
+            ('remote', 'Удалённая работа'),
         ],
         default='full_time'
     )
@@ -52,7 +76,7 @@ class Vacancy(models.Model):
             ('night', 'Ночные смены'),
             ('flexible', 'Гибкий график'),
             ('shift', 'Сменный график'),
-            ('remote', 'Удалённо')
+            ('remote', 'Удалённо'),
         ],
         default='day'
     )
@@ -62,9 +86,9 @@ class Vacancy(models.Model):
         max_length=50,
         choices=[
             ('with_experience', 'с опытом'),
-            ('without_experience', 'без опыта')
+            ('without_experience', 'без опыта'),
         ],
-        default="with_experience"
+        default='with_experience'
     )
     conditions = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

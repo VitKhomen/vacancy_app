@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Company, FeedbackCompany, FavoriteVacancy
+from .models import Company, FeedbackCompany, FavoriteVacancy, HiddenCompany, Complaint
 
 
 @admin.register(Company)
@@ -27,3 +27,18 @@ class FavoriteVacancyAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'vacancy', 'created_at')
     list_filter = ("created_at",)
     search_fields = ("user__username", "vacancy__title")
+
+
+@admin.register(HiddenCompany)
+class HiddenCompanyAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'company', 'created_at']
+    list_filter = ['created_at']
+    search_fields = ['user__username', 'company__name']
+    ordering = ['-created_at']
+
+
+@admin.register(Complaint)
+class ComplaintAdmin(admin.ModelAdmin):
+    list_display = ("user", "vacancy", "created_at")
+    list_filter = ("created_at", "user")
+    search_fields = ("reason",)

@@ -5,6 +5,7 @@ from apps.vacancies.models import Vacancy
 from apps.core.models import SiteSettings
 from apps.communications.models import Response, Invitation
 from apps.companies.models import FavoriteVacancy
+from .utils import filterd_objects_with_filter_type
 
 
 class HomePageView(TemplateView):
@@ -22,25 +23,19 @@ class HomePageView(TemplateView):
         context["total_responses"] = Response.objects.count()
         context["total_invitations"] = Invitation.objects.count()
 
-        # Vacancies with annotated rating & feedback count
-        vacancies = Vacancy.objects.select_related(
+        # Vacancies — exclude hidden vacancies and hidden companies
+        vacancies = Vacancy.objects.visible_for_user(
+            self.request.user
+        ).select_related(
             "company", "profession"
         ).annotate(
             avg_rating=Avg("company__feedbacks__rating"),
             feedback_count=Count("company__feedbacks"),
         )
 
-        # Filter by GET param
+        # Filter by GET param using utility function
         filter_param = self.request.GET.get("filter")
-        if filter_param == "part_time":
-            vacancies = vacancies.filter(employment_type="part_time")
-        elif filter_param == "without_experience":
-            vacancies = vacancies.filter(
-                experience_required="without_experience")
-        elif filter_param == "internship":
-            vacancies = vacancies.filter(employment_type="internship")
-        elif filter_param == "remote":
-            vacancies = vacancies.filter(employment_type="remote")
+        vacancies = filterd_objects_with_filter_type(vacancies, filter_param)
 
         context["vacancies"] = vacancies[:20]
 

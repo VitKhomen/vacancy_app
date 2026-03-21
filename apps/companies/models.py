@@ -82,3 +82,58 @@ class HiddenVacancy(models.Model):
 
     def __str__(self):
         return f"{self.user} hidden {self.vacancy}"
+
+
+class HiddenCompany(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="hidden_companies"
+    )
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.CASCADE,
+        related_name="hidden_by_users"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Hidden Company"
+        verbose_name_plural = "Hidden Companies"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "company"],
+                name="unique_user_hidden_company"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.user} hid company {self.company.name}"
+
+
+class Complaint(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="complaints",
+        verbose_name="User"
+    )
+    vacancy = models.ForeignKey(
+        "vacancies.Vacancy",
+        on_delete=models.CASCADE,
+        related_name="complaints",
+        verbose_name="Vacancy"
+    )
+    reason = models.TextField(
+        verbose_name="Reason",
+        help_text="Describe why you are reporting this vacancy."
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Complaint"
+        verbose_name_plural = "Complaints"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Complaint from {self.user} on vacancy {self.vacancy}"
